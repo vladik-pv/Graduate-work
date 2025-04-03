@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def driver():
     driver = webdriver.Chrome()
     driver.get("https://www.aviasales.ru/?params=MOW1")
@@ -15,7 +15,7 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def driverGOJ():
     driver = webdriver.Chrome()
     driver.get("https://www.aviasales.ru/?params=GOJ1")
