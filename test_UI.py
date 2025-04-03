@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 def driver():
     driver = webdriver.Chrome()
     driver.get("https://www.aviasales.ru/?params=MOW1")
+    driver.maximize_window()
     yield driver
     driver.quit()
 
@@ -19,6 +20,7 @@ def driver():
 def driverGOJ():
     driver = webdriver.Chrome()
     driver.get("https://www.aviasales.ru/?params=GOJ1")
+    driver.maximize_window()
     yield driver
     driver.quit()
 
@@ -51,13 +53,13 @@ def test_CAPSname(driver) -> str:
         destination.click()
         DestInput = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='search-destination-input']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         DestInput.send_keys("Пенза")
         curobj = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='suggested-city-PEZ']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         curobj.click()
@@ -82,12 +84,11 @@ def test_CAPSname(driver) -> str:
 
     # Отправка формы поиска
     with allure.step("Отправка формы поиска"):
-        ticket = WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, "[data-test-id='form-submit']"
                 ))
         )
-        ticket.click()
 
     # Проверка корректности поля 'Откуда'
     with allure.step("Проверка корректности поля 'Откуда'"):
@@ -124,13 +125,13 @@ def test_ENGname(driver) -> str:
         destination.click()
         DestInput = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='search-destination-input']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         DestInput.send_keys("Пенза")
         curobj = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='suggested-city-PEZ']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         curobj.click()
@@ -155,12 +156,11 @@ def test_ENGname(driver) -> str:
 
     # Отправка формы поиска
     with allure.step("Отправка формы поиска"):
-        ticket = WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, "[data-test-id='form-submit']"
                 ))
         )
-        ticket.click()
 
     # Проверка корректности поля 'Откуда'
     with allure.step("Проверка корректности поля 'Откуда'"):
@@ -194,13 +194,13 @@ def test_name_is_2_world_dash(driverGOJ) -> str:
         destination.click()
         DestInput = WebDriverWait(driverGOJ, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='search-destination-input']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         DestInput.send_keys("Пенза")
         curobj = WebDriverWait(driverGOJ, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='suggested-city-PEZ']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         curobj.click()
@@ -223,12 +223,11 @@ def test_name_is_2_world_dash(driverGOJ) -> str:
         curdata.click()
 
     with allure.step("Отправка формы поиска"):
-        ticket = WebDriverWait(driverGOJ, 10).until(
+        WebDriverWait(driverGOJ, 10).until(
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, "[data-test-id='form-submit']"
                 ))
         )
-        ticket.click()
 
     with allure.step("Проверка корректности поля 'Откуда'"):
         assert origin.get_attribute("value") == "Нижний Новгород", \
@@ -260,13 +259,13 @@ def test_name_is_2_word_space(driverGOJ) -> str:
         destination.click()
         DestInput = WebDriverWait(driverGOJ, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='search-destination-input']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         DestInput.send_keys("Пенза")
         curobj = WebDriverWait(driverGOJ, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='suggested-city-PEZ']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         curobj.click()
@@ -289,12 +288,11 @@ def test_name_is_2_word_space(driverGOJ) -> str:
         curdata.click()
 
     with allure.step("Отправка формы поиска"):
-        ticket = WebDriverWait(driverGOJ, 10).until(
+        WebDriverWait(driverGOJ, 10).until(
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, "[data-test-id='form-submit']"
                 ))
         )
-        ticket.click()
 
     with allure.step("Проверка коректности поля 'Откуда'"):
         assert origin.get_attribute("value") == "Нижний Новгород", \
@@ -326,13 +324,13 @@ def test_search(driver) -> str:
         destination.click()
         DestInput = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='search-destination-input']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         DestInput.send_keys("Пенза")
         curobj = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
-                By.CSS_SELECTOR, "[data-test-id='suggested-city-PEZ']"
+                By.CSS_SELECTOR, "#avia_form_destination-input"
                 ))
         )
         curobj.click()
@@ -355,12 +353,11 @@ def test_search(driver) -> str:
         curdata.click()
 
     with allure.step("Отправка формы поиска"):
-        ticket = WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, "[data-test-id='form-submit']"
                 ))
         )
-        ticket.click()
 
         assert origin.get_attribute("value") == "Москва", \
             "Ошибка: поле 'Откуда' заполнено некорректно."
